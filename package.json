@@ -1,0 +1,26 @@
+{
+  "name": "inheritance-js",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.40.2",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*",
+    "slidev-theme-geist": "^0.8.1",
+    "slidev-theme-penguin": "^1.6.1",
+    "vite-svg-loader": "^4.0.0"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.1.23",
+    "@iconify-json/mdi": "^1.1.47",
+    "@iconify-json/simple-icons": "^1.1.44",
+    "sass": "^1.58.0"
+  },
+  "slidev": {
+    "colorSchema": "light"
+  }
+}
