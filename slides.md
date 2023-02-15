@@ -29,6 +29,7 @@ Developer Advocate at <a  href="https://dynatrace.com"><logos-dynatrace-icon mr-
 <v-clicks>
 
 - From Ludhiana 🇮🇳.
+- Developer | Musician | Author
 - <logos-auth0-icon /> Auth0 Ambassador
 - <logos-ionic-icon/> Ionic Developer Expert
 - I often write at <a href="https://inders.in"> inders.in</a>
@@ -60,70 +61,124 @@ Explain Inheritance to a 5 year old
 > ---
 > --- ChatGPT: AI slightly better than B**d
 </v-click>
-
 ---
 layout: center
 ---
 
-Inheritance history and general concept
+<div v-click-hide>
 
+Inheritance is the process by which genetic information is passed on from parent to child.
+
+</div>
+
+<v-after>
+
+**In Programming**: Inheritance is the process by which features are passed on from parent to child.
+
+</v-after>
 
 ---
-
-# prototype
-
-<v-clicks>
-
-- A special property that all objects in JS have.
-- A reference(link) to another object.
-- Since protoype is object, it also have prototype.
-- `[[Prototype]]` ECMAScript standard.
-
-</v-clicks>
+layout: quote
 ---
-layout: center
----
-# Reading prototype
-```ts
-const obj = {};
+```cpp {1-4|1-9|6-12|6-15|1-9,12,17-18|20-21}
+class SmartPhone {
+  public:
+  void captureImages() {}
+};
 
-// standard way
-Object.getPrototypeOf(obj);
+class Iphone: public SmartPhone {
+  public:
+  void faceIDScan() {}
+};
 
-// or
-obj.__proto__;
+// creating object of Iphone
+Iphone x;
+
+// calling method on object
+x.faceIDScan();
+
+// calling an inherited method
+x.captureImages();
+
+// calling unknown method
+x.blablabla(); // ❌ error
 ```
 
 ---
-
-# What happens when we access a property?
-
-1.  The JavaScript engine looks for the property on the object
-    1.  If it finds the property, then it returns it
-1.  Otherwise, the JavaScript engine checks the inherited property of an object by looking at `[[Prototype]]`
-    1.  If the property is found, then it returns it
-    1.  Otherwise, it looks into `[[Prototype]]` of `[[Prototype]]`. This chain ends when either the property is found or there is no `[[Prototype]]` left, which means that we have reached the end of the prototype chain
-
+layout: center
 ---
 
-# Multiple ways of Inheritance
+<v-clicks>
+
+- JavaScript is not class-based language
+- It's an **object-oriented** language
+</v-clicks>
+
 
 ---
+layout: quote
+---
 
+# Objects are first-class citizen
+
+```ts {1-3|1-6|1-3,8-9}
+const greeting = {
+  message: "Welcome to freeCodeCamp!"
+};
+
+// accessing properties
+greeting.message; // Welcome to freeCodeCamp!
+
+// where does this comes from?
+greeting.toString(); 
+```
+
+---
+layout: center
+---
+
+<v-clicks>
+
+- Every object has a special property called **[[Prototype]]**.
+- This property is a **link** to an object.
+- Since **[[Prototype]]** is object, it also has it's own **[[Prototype]]**
+</v-clicks>
+
+<!--
+it's called prototype chain.
+-->
+
+---
+layout: center
+---
+
+# Demo
+
+<!-- const obj = {}; -->
+---
+layout: center
+---
+# How's this chain constructed?
+---
+layout: center
+---
 # Object literal
 
 ```ts
 const obj = {};
-// prototype comes from Object
 ```
 
+---
+layout: center
 ---
 
 # Object Constructor
 
 ```ts
-const obj = new Object(); // prototype comes from Object
+const obj = new Object();
 ```
+---
+layout: center
 ---
 
 # `Object.create` method
@@ -140,13 +195,101 @@ let iPhone = Object.create(SmartPhone);
 iPhone.captureImages(); // works
 ```
 ---
+layout: center
+---
 
 # Constructor method
 
+```ts
+function Rectangle(height, width) {
+  this.height = height;
+  this.width = width;
+}
 
+Rectangle.prototype.calcArea = function() {
+  return this.height * this.width;
+}
+
+const rectangle = new Rectangle(10, 20);
+```
+
+<v-click>
+
+🧠 Why use **prototype**?
+</v-click>
+---
+layout: center
 ---
 
 # ES6 `class` keyword
+
+```ts
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const rectangle = new Rectangle(10, 20);
+```
+
+---
+layout: center
+---
+
+# Using `extends`
+
+```ts
+class Parent {
+  scold() {}
+}
+
+class Child extends Parent {
+  haveFun() {}
+}
+
+const child = new Child();
+```
+---
+layout: center
+---
+
+
+# What happens when we access a property?
+
+<!-- Show that in devtools -->
+---
+
+# How to access the `[[Prototype]]`
+
+```ts
+const obj = {};
+
+// standard
+Object.getPrototypeOf(obj);
+
+// non-standard
+obj.__proto__;
+```
+
+---
+
+# How to check if property is inherited?
+
+```ts
+const object1 = {"property1": 42};
+
+console.log(object1.hasOwnProperty('property1'));
+// Expected output: true
+
+console.log(object1.hasOwnProperty('toString'));
+// Expected output: false
+```
 
 ---
 layout: center
