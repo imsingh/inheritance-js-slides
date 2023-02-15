@@ -296,4 +296,6 @@ layout: center
 ---
 # Fancy reading it?
 
-https://inders.in/blog/inheritance-with-javascript-prototypes
+- Article: https://inders.in/blog/inheritance-with-javascript-prototypes
+- Slides: https://github.com/imsingh/inheritance-js-slides
+
